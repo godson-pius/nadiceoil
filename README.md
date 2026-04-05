@@ -1,8 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nadice Oil & Gas Limited
 
-## Getting Started
+**Nadice, the Leading Bulk Diesel Supplier in Enugu**
 
-First, run the development server:
+Nadice Oil and Gas Limited is the leading Diesel (AGO) supplier, providing various Diesel products, industrial equipment, and electrical energy generating plant supplies, regardless of your industry.
+
+## 🚀 Key Features
+
+*   **Modern UI/UX**: Sleek, responsive, and dynamic user interface.
+*   **Performance First**: Powered by React 19 and Next.js for rapid page loads, optimal SEO, and server-side rendering.
+*   **Engaging UI**: Smooth interactions and entrance animations utilizing Framer Motion.
+*   **Custom Typography**: Beautifully paired *DM Sans* and *Bricolage Grotesque* fonts for a premium, professional aesthetic.
+*   **Tailwind CSS v4**: Utility-first CSS framework for rapid and scalable styling.
+
+## 🛠️ Tech Stack
+
+*   **Framework**: [Next.js](https://nextjs.org/) (React 19)
+*   **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+*   **Icons**: [Lucide React](https://lucide.dev/)
+*   **Animations**: [Framer Motion](https://motion.dev/) & [React Type Animation](https://www.npmjs.com/package/react-type-animation)
+*   **Language**: [TypeScript](https://www.typescriptlang.org/)
+
+## 📦 Getting Started
+
+### Prerequisites
+Make sure you have Node.js installed on your machine.
+
+### Installation
+
+1. Clone this repository to your local machine.
+2. Install the application dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+### Running the Development Server
+
+Start the application in development mode:
 
 ```bash
 npm run dev
@@ -14,23 +52,14 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the application. The page will automatically hot-reload as you make changes to the files.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📂 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+*   `app/`: Core Next.js routing, layouts, and main pages.
+*   `components/`: Reusable user interface components (Hero, About, Partners, Qualities, Header, Footer).
+*   `public/`: Static assets including images, logos, and icons.
 
-## Learn More
+## 📄 License
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This code is proprietary.
