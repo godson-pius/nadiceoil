@@ -8,7 +8,7 @@ const Qualities = () => {
         <main className='py-20 px-3'>
             <section className='flex flex-col justify-center bg-gray-100 rounded-xl pt-24'>
                 <h2 className='text-5xl font-medium font-bricolage text-center'>Nadice Oil & Gas</h2>
-                <div className='w-max p-1 border-2 border-orange-200 rounded-full hover:scale-105 hover:-skew-2 transition-all duration-700 cursor-pointer hover:shadow mx-auto mt-2'>
+                <div className='w-max p-1 border-2 border-orange-200 rounded-full hover:scale-105 hover:-skew-2 transition-all duration-700 cursor-pointer hover:shadow mx-auto mt-2' data-cursor="hover">
                     <div className='border-2 w-max font-medium px-10 py-2 text-lg border-orange-300 rounded-full'>Leading company in oil & gas</div>
                 </div>
 

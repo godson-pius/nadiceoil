@@ -5,7 +5,7 @@ const Hero = () => {
     return (
         <main className='flex items-center px-44 py-10 gap-10'>
             <section className='flex flex-col'>
-                <div className='w-max p-1 border-2 border-orange-200 rounded-full hover:scale-105 transition-all duration-700 cursor-pointer hover:shadow'>
+                <div className='w-max p-1 border-2 border-orange-200 rounded-full hover:scale-105 transition-all duration-700 cursor-pointer hover:shadow' data-cursor="hover">
                     <div className='border-2 w-max font-medium px-6 py-2 text-sm border-orange-300 rounded-full'>Nadice Oil and Gas Limited</div>
                 </div>
                 <h2 className='text-5xl font-medium w-150 font-bricolage mt-5'>Nadice, the Leading Bulk Diesel Supplier in Enugu </h2>

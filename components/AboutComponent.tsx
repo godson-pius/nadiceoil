@@ -6,7 +6,7 @@ const AboutComponent = () => {
         <main className='py-20 px-3'>
             <section className='bg-black rounded-3xl p-20'>
                 <h2 className='text-5xl font-medium font-bricolage text-center text-white'>Nadice Oil & Gas Limited</h2>
-                <div className='w-max p-1 border-2 border-orange-200 rounded-full hover:scale-105 hover:-skew-2 transition-all duration-700 cursor-pointer hover:shadow mx-auto mt-4'>
+                <div className='w-max p-1 border-2 border-orange-200 rounded-full hover:scale-105 hover:-skew-2 transition-all duration-700 cursor-pointer hover:shadow mx-auto mt-4' data-cursor="hover">
                     <div className='border-2 w-max font-medium px-10 py-2 text-lg border-orange-300 rounded-full text-orange-100'>Read more about us</div>
                 </div>
 

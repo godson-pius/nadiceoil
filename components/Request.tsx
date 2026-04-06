@@ -8,7 +8,7 @@ const Request = () => {
         <main>
             <section className='px-44 py-10 flex items-center justify-between'>
                 <div className='w-full'>
-                    <div className='w-max p-1 border-2 border-orange-200 rounded-full hover:scale-105 transition-all duration-700 cursor-pointer hover:shadow'>
+                    <div className='w-max p-1 border-2 border-orange-200 rounded-full hover:scale-105 transition-all duration-700 cursor-pointer hover:shadow' data-cursor="hover">
                         <div className='border-2 w-max font-medium px-6 py-2 text-sm border-orange-300 rounded-full'>Request for Diesel</div>
                     </div>
                     <h2 className='text-5xl font-medium font-bricolage mt-3 w-sm'>Make a diesel delivery request.</h2>

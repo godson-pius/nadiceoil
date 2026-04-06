@@ -65,7 +65,7 @@ const Footer = () => {
             {/* Social Media */}
             <section className='flex items-center justify-between mx-44 py-10'>
                 <p className='text-sm'>Copyrights © {new Date().getFullYear()} All Rights Reserved.</p>
-                <div className='flex flex-col gap-1 items-center duration-700 hover:scale-105'>
+                <div className='flex flex-col gap-[0.5px] items-end duration-700 hover:scale-105' data-cursor="brand">
                     <p className='text-xs'>Developed by</p>
                     <Link href={'#'}>
                         <Image src={'/wbt.png'} alt='WBT' width={120} height={120} />

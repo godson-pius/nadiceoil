@@ -3,6 +3,7 @@ import { DM_Sans, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CursorFollower from "@/components/CursorFollower";
 
 const dm_sans = DM_Sans({
   variable: "--font-dm_sans",
@@ -36,6 +37,7 @@ export default function RootLayout({
           {children}
         </section>
         <Footer />
+        <CursorFollower />
       </body>
     </html>
   );
