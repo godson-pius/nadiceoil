@@ -14,8 +14,8 @@ const Header = () => {
                         <ul className='flex items-center gap-14'>
                             <Link href={'/'} className='hover:text-orange-400 transition-all duration-700 hover:-skew-2 mix-blend-difference'>Home</Link>
                             <Link href={'/about'} className='hover:text-orange-400 transition-all duration-700 hover:-skew-2 mix-blend-difference'>About</Link>
-                            <Link href={'#'} className='hover:text-orange-400 transition-all duration-700 hover:-skew-2 mix-blend-difference'>Services</Link>
-                            <Link href={'#'} className='hover:text-orange-400 transition-all duration-700 hover:-skew-2 mix-blend-difference'>Contact</Link>
+                            <Link href={'/services'} className='hover:text-orange-400 transition-all duration-700 hover:-skew-2 mix-blend-difference'>Services</Link>
+                            <Link href={'/contact'} className='hover:text-orange-400 transition-all duration-700 hover:-skew-2 mix-blend-difference'>Contact</Link>
                         </ul>
                     </div>
 

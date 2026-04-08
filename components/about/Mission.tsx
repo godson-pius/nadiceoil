@@ -14,11 +14,11 @@ const Mission = () => {
                         <TypeAnimation
                             sequence={[
                                 'Mission',
-                                2000,
+                                1000,
                                 'Vision',
-                                2000,
+                                1000,
                                 'Core Values',
-                                2000,
+                                1000,
                             ]}
                             repeat={Infinity}
                             className='font-medium px-10 py-2 text-xl border-red-300 rounded-full text-white'
