@@ -23,7 +23,8 @@ const Hero = () => {
             </section>
 
             <section className='w-full'>
-                <div className="w-full h-[450px] bg-blue-500 rounded-3xl bg-[url('/nadicebg2.png')] bg-cover bg-center shadow-2xl"></div>
+                <video src="/nadiceads.mp4" autoPlay loop muted playsInline className='w-full h-[450px] object-cover rounded-3xl shadow-2xl' />
+                {/* <div className="w-full h-[450px] bg-blue-500 rounded-3xl bg-[url('/nadicebg2.png')] bg-cover bg-center shadow-2xl"></div> */}
             </section>
         </main>
     )
