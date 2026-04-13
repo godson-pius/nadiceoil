@@ -3,6 +3,7 @@ import { DM_Sans, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import CursorFollower from "@/components/CursorFollower";
 import LayoutWrapper from "@/components/LayoutWrapper";
+import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
 
 const dm_sans = DM_Sans({
   variable: "--font-dm_sans",
@@ -88,6 +89,7 @@ export default function RootLayout({
           {children}
         </LayoutWrapper>
         <CursorFollower />
+        <WhatsAppFloatingButton />
       </body>
     </html>
   );
