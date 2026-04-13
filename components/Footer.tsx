@@ -1,9 +1,37 @@
+'use client'
 import { FileSymlink, Link2, MailCheck, Map, MonitorSmartphone } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Footer = () => {
+    const [settings, setSettings] = useState({
+        address: 'Plot No 2, within 4 corners Enugu, along Enugu-Port Harcourt express road Ozalla, Nkanu west L.G.A Enugu State.',
+        phone: '+(234) 903 334 1839',
+        email: 'support@nadiceoilltd.com'
+    })
+
+    useEffect(() => {
+        const fetchSettings = async () => {
+            try {
+                const res = await fetch('/api/admin/settings')
+                if (res.ok) {
+                    const data = await res.json()
+                    if (data) {
+                        setSettings(prev => ({
+                            address: data.address || prev.address,
+                            phone: data.phone || prev.phone,
+                            email: data.email || prev.email
+                        }))
+                    }
+                }
+            } catch (error) {
+                console.error('Failed to fetch settings')
+            }
+        }
+        fetchSettings()
+    }, [])
+
     return (
         <footer className='bg-gray-100 pt-16 md:pt-24 mt-20'>
             <section className='px-6 md:px-20 flex flex-col lg:flex-row justify-between items-start border-b-[1.5px] border-gray-300 pb-10 gap-10 lg:gap-0'>
@@ -40,17 +68,17 @@ const Footer = () => {
                         <ul className='mt-5 flex flex-col gap-4'>
                             <div className='flex items-start gap-2 hover:text-orange-400 transition-all duration-700 hover:-skew-2 max-w-xs md:max-w-md'>
                                 <Map size={20} className='shrink-0 mt-1' />
-                                <li className='list-none'>Plot No 2, within 4 corners Enugu, along Enugu-Port Harcourt express road Ozalla, Nkanu west L.G.A Enugu State.</li>
+                                <li className='list-none'>{settings.address}</li>
                             </div>
 
                             <div className='flex items-start gap-2 hover:text-orange-400 transition-all duration-700 hover:-skew-2'>
                                 <MonitorSmartphone size={20} className='shrink-0' />
-                                <li className='list-none'>+(234) 903 334 1839.</li>
+                                <li className='list-none'>{settings.phone}</li>
                             </div>
 
                             <div className='flex items-start gap-2 hover:text-orange-400 transition-all duration-700 hover:-skew-2'>
                                 <MailCheck size={20} className='shrink-0' />
-                                <li className='list-none'>support@nadiceoilltd.com</li>
+                                <li className='list-none'>{settings.email}</li>
                             </div>
                         </ul>
                     </div>

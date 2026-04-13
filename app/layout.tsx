@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { DM_Sans, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import CursorFollower from "@/components/CursorFollower";
+import LayoutWrapper from "@/components/LayoutWrapper";
 
 const dm_sans = DM_Sans({
   variable: "--font-dm_sans",
@@ -32,13 +31,12 @@ export default function RootLayout({
       className={`${dm_sans.variable} ${bricolage_grotesque.variable} h-full`}
     >
       <body className="min-h-full flex flex-col">
-        <Header />
-        <section className="pt-24">
+        <LayoutWrapper>
           {children}
-        </section>
-        <Footer />
+        </LayoutWrapper>
         <CursorFollower />
       </body>
     </html>
   );
 }
+

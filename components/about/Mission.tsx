@@ -1,9 +1,36 @@
 'use client'
-import { ChessQueen, SwatchBook } from 'lucide-react'
-import React from 'react'
+import { SwatchBook } from 'lucide-react'
+import React, { useEffect, useState } from 'react'
 import { TypeAnimation } from 'react-type-animation'
 
 const Mission = () => {
+    const [settings, setSettings] = useState({
+        mission: 'Cutting costs for our clients by ending the epidemic mentality of high-priced supplies of petroleum products and procurement of energy.',
+        vision: 'Committed to being and remaining the leading supplier of premium Diesel Fuel (AGO), ensuring quality, reliability, and value for every customer',
+        coreValues: 'Upholding accountability, ensuring reliability, staying responsive, driving innovation, supporting our clients, and delivering excellence in all we do'
+    })
+
+    useEffect(() => {
+        const fetchSettings = async () => {
+            try {
+                const res = await fetch('/api/admin/settings')
+                if (res.ok) {
+                    const data = await res.json()
+                    if (data) {
+                        setSettings(prev => ({
+                            mission: data.mission || prev.mission,
+                            vision: data.vision || prev.vision,
+                            coreValues: data.coreValues || prev.coreValues
+                        }))
+                    }
+                }
+            } catch (error) {
+                console.error('Failed to fetch settings')
+            }
+        }
+        fetchSettings()
+    }, [])
+
     return (
         <main className='py-10 md:py-20 px-4 md:px-6'>
             <section className='flex flex-col justify-center bg-orange-900 rounded-3xl md:rounded-4xl py-16 md:py-24 px-6 md:px-28 relative overflow-hidden'>
@@ -31,7 +58,7 @@ const Mission = () => {
                     <div className='bg-white px-6 md:px-9 py-8 md:py-12 rounded-2xl flex flex-col gap-2 relative overflow-hidden hover:scale-105 hover:-skew-2 transition-all duration-700 cursor-pointer hover:shadow-2xl hover:shadow-orange-700 border-[0.1px] border-orange-300'>
                         <SwatchBook size={30} color='black' />
                         <h5 className='text-2xl md:text-3xl font-medium text-black'>Mission</h5>
-                        <p className='text-black text-xs md:text-sm'>Cutting costs for our clients by ending the epidemic mentality of high-priced supplies of petroleum products and procurement of energy.</p>
+                        <p className='text-black text-xs md:text-sm whitespace-pre-line'>{settings.mission}</p>
 
                         <span className='w-36 h-36 bg-orange-400 rounded-full absolute -top-20 -right-10'></span>
                     </div>
@@ -39,7 +66,7 @@ const Mission = () => {
                     <div className='bg-white px-6 md:px-9 py-8 md:py-12 rounded-2xl flex flex-col gap-2 relative overflow-hidden hover:scale-105 hover:-skew-2 transition-all duration-700 cursor-pointer hover:shadow-2xl hover:shadow-orange-700 border-[0.1px] border-orange-300'>
                         <SwatchBook size={30} color='black' />
                         <h5 className='text-2xl md:text-3xl font-medium text-black'>Vision</h5>
-                        <p className='text-black text-xs md:text-sm'>Committed to being and remaining the leading supplier of premium Diesel Fuel (AGO), ensuring quality, reliability, and value for every customer</p>
+                        <p className='text-black text-xs md:text-sm whitespace-pre-line'>{settings.vision}</p>
 
                         <span className='w-36 h-36 bg-orange-400 rounded-full absolute -top-20 -right-10'></span>
                     </div>
@@ -47,7 +74,7 @@ const Mission = () => {
                     <div className='bg-white px-6 md:px-9 py-8 md:py-12 rounded-2xl flex flex-col gap-2 relative overflow-hidden hover:scale-105 hover:-skew-2 transition-all duration-700 cursor-pointer hover:shadow-2xl hover:shadow-orange-700 border-[0.1px] border-orange-300 md:col-span-2 lg:col-span-1'>
                         <SwatchBook size={30} color='black' />
                         <h5 className='text-2xl md:text-3xl font-medium text-black'>Core Values</h5>
-                        <p className='text-black text-xs md:text-sm'>Upholding accountability, ensuring reliability, staying responsive, driving innovation, supporting our clients, and delivering excellence in all we do</p>
+                        <p className='text-black text-xs md:text-sm whitespace-pre-line'>{settings.coreValues}</p>
 
                         <span className='w-36 h-36 bg-orange-400 rounded-full absolute -top-20 -right-10'></span>
                     </div>

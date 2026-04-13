@@ -3,12 +3,18 @@ import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
+import RequestModal from './ui/RequestModal'
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false)
+    const [isRequestModalOpen, setIsRequestModalOpen] = useState(false)
 
     return (
         <main>
+            <RequestModal 
+                isOpen={isRequestModalOpen} 
+                onClose={() => setIsRequestModalOpen(false)} 
+            />
             <header className='backdrop-blur-md backdrop-grayscale backdrop-contrast-100 fixed w-full z-50'>
                 <nav className='px-6 md:px-20 flex justify-between items-center w-full py-2'>
                     <div className='flex items-center gap-6 md:gap-20'>
@@ -25,7 +31,9 @@ const Header = () => {
 
                     <div className='flex items-center gap-4'>
                         {/* Request Button */}
-                        <button className='bg-black text-white px-4 md:px-6 py-3 md:py-4 cursor-pointer rounded-xl font-medium duration-1000 transition-all hover:scale-90 hover:rounded-4xl relative group text-sm md:text-base'>
+                        <button 
+                            onClick={() => setIsRequestModalOpen(true)}
+                            className='bg-black text-white px-4 md:px-6 py-3 md:py-4 cursor-pointer rounded-xl font-medium duration-1000 transition-all hover:scale-90 hover:rounded-4xl relative group text-sm md:text-base'>
                             Make Request
                             <span className='absolute -inset-px group-hover:border duration-700 transition-all border-black hidden animate-ping group-hover:border-orange-400 rounded-4xl group-hover:block'></span>
                         </button>
@@ -47,6 +55,15 @@ const Header = () => {
                         <Link href={'/about'} onClick={() => setIsOpen(false)} className='hover:text-orange-400 transition-all'>About</Link>
                         <Link href={'/services'} onClick={() => setIsOpen(false)} className='hover:text-orange-400 transition-all'>Services</Link>
                         <Link href={'/contact'} onClick={() => setIsOpen(false)} className='hover:text-orange-400 transition-all'>Contact</Link>
+                        <button 
+                            onClick={() => {
+                                setIsOpen(false)
+                                setIsRequestModalOpen(true)
+                            }}
+                            className='bg-orange-400 text-white px-8 py-3 rounded-xl'
+                        >
+                            Make Request
+                        </button>
                     </ul>
                 </div>
             </header>

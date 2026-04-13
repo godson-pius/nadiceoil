@@ -6,7 +6,6 @@ import React from 'react'
 const page = () => {
     return (
         <>
-            {/* mongodb+srv://godsonazubuike15_db_user:nadiceoilpassword@nadicecluster.5wnfvmt.mongodb.net/?appName=nadiceCluster */}
             <ContactHero />
             <ContactInfo />
             <ContactForm />

@@ -1,7 +1,27 @@
+'use client'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Hero = () => {
+    const [dieselPrice, setDieselPrice] = useState('1,300')
+
+    useEffect(() => {
+        const fetchSettings = async () => {
+            try {
+                const res = await fetch('/api/admin/settings')
+                if (res.ok) {
+                    const data = await res.json()
+                    if (data && data.dieselPrice) {
+                        setDieselPrice(Number(data.dieselPrice).toLocaleString())
+                    }
+                }
+            } catch (error) {
+                console.error('Failed to fetch settings')
+            }
+        }
+        fetchSettings()
+    }, [])
+
     return (
         <main className='flex flex-col lg:flex-row items-center px-6 md:px-20 lg:px-44 py-10 gap-10'>
             <section className='flex flex-col items-center lg:items-start text-center lg:text-left'>
@@ -12,8 +32,9 @@ const Hero = () => {
                 <p className='text-gray-500 mt-5 max-w-md'>Nadice Oil and Gas Limited is a trusted Diesel (AGO) supplier, delivering high-quality diesel solutions tailored to meet the needs of various industries with reliability and efficiency.</p>
 
                 <div className='flex items-center gap-5 mt-8'>
-                    <button className='bg-orange-400 text-white px-6 py-3 cursor-pointer rounded-lg font-medium text-sm md:text-base'>₦1,300 / litre</button>
+                    <button className='bg-orange-400 text-white px-6 py-3 cursor-pointer rounded-lg font-medium text-sm md:text-base'>₦{dieselPrice} / litre</button>
                     <button className='bg-transparent border-[1.5px] border-gray-200 text-gray-700 px-6 py-3 cursor-pointer rounded-lg font-medium text-sm md:text-base'>Read more</button>
+
                 </div>
 
                 <div className='mt-8 flex items-center gap-2'>

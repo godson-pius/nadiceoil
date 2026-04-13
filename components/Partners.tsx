@@ -1,21 +1,35 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
+import { Image as ImageIcon } from 'lucide-react'
 
-const trust = [
-    { icon: "/icons/security.svg", text: "Fidelity Bank" },
-    { icon: "/icons/security.svg", text: "Fidelity Bank" },
-    { icon: "/icons/security.svg", text: "Fidelity Bank" },
-    { icon: "/icons/security.svg", text: "Fidelity Bank" },
-    { icon: "/icons/security.svg", text: "Fidelity Bank" },
-    { icon: "/icons/security.svg", text: "Fidelity Bank" },
-    { icon: "/icons/security.svg", text: "Fidelity Bank" },
-    { icon: "/icons/security.svg", text: "Genesis" },
-    { icon: "/icons/security.svg", text: "Chicken Republic" },
-    { icon: "/icons/security.svg", text: "Ntachiosa" },
+const defaultTrust = [
+    { icon: "/icons/security.svg", name: "Fidelity Bank", logoUrl: "" },
+    { icon: "/icons/security.svg", name: "Genesis", logoUrl: "" },
+    { icon: "/icons/security.svg", name: "Chicken Republic", logoUrl: "" },
+    { icon: "/icons/security.svg", name: "Ntachiosa", logoUrl: "" },
 ]
 
 const Partners = () => {
+    const [partners, setPartners] = useState(defaultTrust)
+
+    useEffect(() => {
+        const fetchPartners = async () => {
+            try {
+                const res = await fetch('/api/admin/partners')
+                if (res.ok) {
+                    const data = await res.json()
+                    if (data && data.length > 0) {
+                        setPartners(data)
+                    }
+                }
+            } catch (error) {
+                console.error('Failed to fetch partners')
+            }
+        }
+        fetchPartners()
+    }, [])
+
     return (
         <section className='py-10 overflow-hidden'>
             <div className='mx-4 md:mx-20 p-2 flex items-center justify-center gap-10 mt-10 mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]'>
@@ -28,13 +42,17 @@ const Partners = () => {
                         repeat: Infinity,
                     }}
                 >
-                    {/* Duplicate the array to create a seamless loop */}
-                    {[...trust, ...trust, ...trust].map((item, index) => (
+                    {/* Duplicate the array heavily to create a seamless loop regardless of how few partners there are */}
+                    {[...partners, ...partners, ...partners, ...partners, ...partners].map((item, index) => (
                         <div key={index} className='bg-gray-900 w-80 rounded-full p-3 md:p-3 flex flex-none items-center gap-3 border border-white/10'>
-                            <div className='bg-white/20 w-10 h-10 md:w-14 md:h-14 flex justify-center items-center rounded-full'>
-
+                            <div className='bg-white/20 w-10 h-10 md:w-14 md:h-14 flex justify-center items-center rounded-full overflow-hidden shrink-0'>
+                                {item.logoUrl ? (
+                                    <img src={item.logoUrl} alt={item.name} className="w-full h-full object-cover" />
+                                ) : (
+                                    <ImageIcon size={20} className="text-white/50" />
+                                )}
                             </div>
-                            <p className="text-gray-200">{item.text}</p>
+                            <p className="text-gray-200 truncate">{item.name}</p>
                         </div>
                     ))}
                 </motion.div>
