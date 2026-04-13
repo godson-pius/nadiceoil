@@ -1,5 +1,6 @@
 'use client'
 import Image from 'next/image'
+import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 
 const Hero = () => {
@@ -33,7 +34,7 @@ const Hero = () => {
 
                 <div className='flex items-center gap-5 mt-8'>
                     <button className='bg-orange-400 text-white px-6 py-3 cursor-pointer rounded-lg font-medium text-sm md:text-base'>₦{dieselPrice} / litre</button>
-                    <button className='bg-transparent border-[1.5px] border-gray-200 text-gray-700 px-6 py-3 cursor-pointer rounded-lg font-medium text-sm md:text-base'>Read more</button>
+                    <Link href="/about" className='bg-transparent border-[1.5px] border-gray-200 text-gray-700 px-6 py-3 cursor-pointer rounded-lg font-medium text-sm md:text-base'>Read more</Link>
 
                 </div>
 
