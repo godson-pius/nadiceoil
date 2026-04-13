@@ -76,8 +76,8 @@ export default function SettingsPage() {
 
     return (
         <div className="max-w-4xl mx-auto">
-            <Toast isVisible={toast.isVisible} message={toast.message} type={toast.type} onClose={() => setToast({...toast, isVisible: false})} />
-            
+            <Toast isVisible={toast.isVisible} message={toast.message} type={toast.type} onClose={() => setToast({ ...toast, isVisible: false })} />
+
             <div className="mb-8">
                 <h1 className="text-3xl font-bricolage font-bold text-gray-900">Site Settings</h1>
                 <p className="text-gray-500 mt-2">Manage global text, pricing, and contact information.</p>
@@ -86,17 +86,17 @@ export default function SettingsPage() {
             <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8">
                 {/* Tabs */}
                 <div className="flex gap-6 mb-8 border-b border-gray-100 pb-px">
-                    <button 
+                    <button
                         type="button"
                         onClick={() => setActiveTab('pricing')}
                         className={`pb-3 px-1 text-sm font-medium transition-all border-b-2 -mb-px ${activeTab === 'pricing' ? 'border-orange-400 text-orange-500' : 'border-transparent text-gray-400 hover:text-gray-700'}`}
                     >Pricing</button>
-                    <button 
+                    <button
                         type="button"
                         onClick={() => setActiveTab('contact')}
                         className={`pb-3 px-1 text-sm font-medium transition-all border-b-2 -mb-px ${activeTab === 'contact' ? 'border-orange-400 text-orange-500' : 'border-transparent text-gray-400 hover:text-gray-700'}`}
                     >Contact Details</button>
-                    <button 
+                    <button
                         type="button"
                         onClick={() => setActiveTab('company')}
                         className={`pb-3 px-1 text-sm font-medium transition-all border-b-2 -mb-px ${activeTab === 'company' ? 'border-orange-400 text-orange-500' : 'border-transparent text-gray-400 hover:text-gray-700'}`}
@@ -104,14 +104,14 @@ export default function SettingsPage() {
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-8">
-                    
+
                     {/* Pricing Section */}
                     {activeTab === 'pricing' && (
                         <section className="animate-in fade-in slide-in-from-bottom-2 duration-500">
                             <h3 className="text-lg font-medium text-gray-900 mb-4 border-b pb-2">Pricing</h3>
-                            <div>
+                            <div className='flex items-center gap-3'>
                                 <label className="text-sm font-medium text-gray-700">Diesel Price per Liter (₦)</label>
-                                <input 
+                                <input
                                     type="number"
                                     name="dieselPrice"
                                     value={settings.dieselPrice}
@@ -129,7 +129,7 @@ export default function SettingsPage() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label className="text-sm font-medium text-gray-700">Phone Number</label>
-                                    <input 
+                                    <input
                                         type="text"
                                         name="phone"
                                         value={settings.phone}
@@ -139,7 +139,7 @@ export default function SettingsPage() {
                                 </div>
                                 <div>
                                     <label className="text-sm font-medium text-gray-700">Email Address</label>
-                                    <input 
+                                    <input
                                         type="email"
                                         name="email"
                                         value={settings.email}
@@ -149,7 +149,7 @@ export default function SettingsPage() {
                                 </div>
                                 <div className="md:col-span-2">
                                     <label className="text-sm font-medium text-gray-700">Physical Address</label>
-                                    <input 
+                                    <input
                                         type="text"
                                         name="address"
                                         value={settings.address}
@@ -168,7 +168,7 @@ export default function SettingsPage() {
                             <div className="space-y-6">
                                 <div>
                                     <label className="text-sm font-medium text-gray-700">Mission Statement</label>
-                                    <textarea 
+                                    <textarea
                                         name="mission"
                                         value={settings.mission}
                                         onChange={handleChange}
@@ -178,7 +178,7 @@ export default function SettingsPage() {
                                 </div>
                                 <div>
                                     <label className="text-sm font-medium text-gray-700">Vision Statement</label>
-                                    <textarea 
+                                    <textarea
                                         name="vision"
                                         value={settings.vision}
                                         onChange={handleChange}
@@ -188,7 +188,7 @@ export default function SettingsPage() {
                                 </div>
                                 <div>
                                     <label className="text-sm font-medium text-gray-700">Core Values</label>
-                                    <textarea 
+                                    <textarea
                                         name="coreValues"
                                         value={settings.coreValues}
                                         onChange={handleChange}
@@ -201,7 +201,7 @@ export default function SettingsPage() {
                     )}
 
                     <div className="pt-4 border-t border-gray-100 flex justify-end">
-                        <button 
+                        <button
                             type="submit"
                             disabled={saving}
                             className="bg-orange-400 text-white px-8 py-3 rounded-xl font-medium hover:bg-orange-500 transition-all disabled:opacity-50"

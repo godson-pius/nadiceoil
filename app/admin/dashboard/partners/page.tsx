@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { Trash2, Plus, Image as ImageIcon } from 'lucide-react'
+import { Trash2, Plus, Handshake, Pencil } from 'lucide-react'
 import Toast from '@/components/ui/Toast'
 
 export default function DashboardPartners() {
@@ -10,6 +10,7 @@ export default function DashboardPartners() {
     
     // Add Partner State
     const [isAdding, setIsAdding] = useState(false)
+    const [editPartnerId, setEditPartnerId] = useState<string | null>(null)
     const [newPartner, setNewPartner] = useState({ name: '', logoUrl: '' })
     const [saving, setSaving] = useState(false)
 
@@ -46,22 +47,42 @@ export default function DashboardPartners() {
         }
     }
 
+    const handleEdit = (partner: any) => {
+        setNewPartner({ name: partner.name, logoUrl: partner.logoUrl || '' })
+        setEditPartnerId(partner._id)
+        setIsAdding(true)
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+
+    const handleCancel = () => {
+        setIsAdding(false)
+        setEditPartnerId(null)
+        setNewPartner({ name: '', logoUrl: '' })
+    }
+
     const handleAddPartner = async (e: React.FormEvent) => {
         e.preventDefault()
         setSaving(true)
         try {
-            const res = await fetch('/api/admin/partners', {
-                method: 'POST',
+            const url = editPartnerId ? `/api/admin/partners/${editPartnerId}` : '/api/admin/partners'
+            const method = editPartnerId ? 'PUT' : 'POST'
+            
+            const payload = { ...newPartner }
+            if (!payload.logoUrl || payload.logoUrl.trim() === '') {
+                delete (payload as any).logoUrl
+            }
+            
+            const res = await fetch(url, {
+                method,
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(newPartner)
+                body: JSON.stringify(payload)
             })
             if (res.ok) {
-                setToast({ isVisible: true, message: 'Partner added successfully', type: 'success' })
-                setNewPartner({ name: '', logoUrl: '' })
-                setIsAdding(false)
+                setToast({ isVisible: true, message: editPartnerId ? 'Partner updated successfully' : 'Partner added successfully', type: 'success' })
+                handleCancel()
                 fetchPartners()
             } else {
-                setToast({ isVisible: true, message: 'Failed to add partner', type: 'error' })
+                setToast({ isVisible: true, message: 'Failed to save partner', type: 'error' })
             }
         } catch (error) {
             setToast({ isVisible: true, message: 'An error occurred', type: 'error' })
@@ -80,7 +101,7 @@ export default function DashboardPartners() {
                     <p className="text-gray-500 mt-2">Add trusted brands and partners to display on the website.</p>
                 </div>
                 <button 
-                    onClick={() => setIsAdding(!isAdding)}
+                    onClick={() => isAdding ? handleCancel() : setIsAdding(true)}
                     className="flex items-center gap-2 bg-orange-400 text-white px-5 py-2.5 rounded-xl font-medium hover:bg-orange-500 transition-all"
                 >
                     {isAdding ? 'Cancel' : <><Plus size={18} /> Add Partner</>}
@@ -89,7 +110,9 @@ export default function DashboardPartners() {
 
             {isAdding && (
                 <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 mb-8 animate-in fade-in slide-in-from-top-4">
-                    <h3 className="text-xl font-bricolage font-bold text-gray-900 mb-6">Add New Partner</h3>
+                    <h3 className="text-xl font-bricolage font-bold text-gray-900 mb-6">
+                        {editPartnerId ? 'Edit Partner' : 'Add New Partner'}
+                    </h3>
                     <form onSubmit={handleAddPartner} className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label className="text-sm font-medium text-gray-700">Partner Name / Brand Name</label>
@@ -118,7 +141,7 @@ export default function DashboardPartners() {
                                 disabled={saving}
                                 className="bg-black text-white px-8 py-3 rounded-xl font-medium hover:bg-gray-800 transition-all disabled:opacity-50"
                             >
-                                {saving ? 'Adding...' : 'Save Partner'}
+                                {saving ? 'Saving...' : (editPartnerId ? 'Update Partner' : 'Save Partner')}
                             </button>
                         </div>
                     </form>
@@ -141,9 +164,9 @@ export default function DashboardPartners() {
                                 <div className="flex items-center gap-4">
                                     <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center shrink-0 overflow-hidden border border-gray-200">
                                         {partner.logoUrl ? (
-                                            <img src={partner.logoUrl} alt={partner.name} className="w-full h-full object-cover" />
+                                            <img src={partner.logoUrl} alt={partner.name} className="w-full h-full object-cover p-1 bg-white" />
                                         ) : (
-                                            <ImageIcon size={20} className="text-gray-400" />
+                                            <Handshake size={20} className="text-gray-400" />
                                         )}
                                     </div>
                                     <div>
@@ -151,13 +174,22 @@ export default function DashboardPartners() {
                                         <div className="text-gray-400 text-xs mt-0.5">Added {new Date(partner.createdAt).toLocaleDateString()}</div>
                                     </div>
                                 </div>
-                                <button 
-                                    onClick={() => handleDelete(partner._id)}
-                                    className="p-2 text-red-300 hover:bg-red-50 hover:text-red-500 rounded-lg transition-all opacity-0 group-hover:opacity-100"
-                                    title="Remove Partner"
-                                >
-                                    <Trash2 size={18} />
-                                </button>
+                                <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button 
+                                        onClick={() => handleEdit(partner)}
+                                        className="p-2 text-blue-400 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all"
+                                        title="Edit Partner"
+                                    >
+                                        <Pencil size={18} />
+                                    </button>
+                                    <button 
+                                        onClick={() => handleDelete(partner._id)}
+                                        className="p-2 text-red-300 hover:bg-red-50 hover:text-red-500 rounded-lg transition-all"
+                                        title="Remove Partner"
+                                    >
+                                        <Trash2 size={18} />
+                                    </button>
+                                </div>
                             </div>
                         ))}
                     </div>

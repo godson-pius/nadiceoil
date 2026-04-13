@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
-import { Image as ImageIcon } from 'lucide-react'
+import { Handshake } from 'lucide-react'
 
 const defaultTrust = [
     { icon: "/icons/security.svg", name: "Fidelity Bank", logoUrl: "" },
@@ -47,12 +47,12 @@ const Partners = () => {
                         <div key={index} className='bg-gray-900 w-80 rounded-full p-3 md:p-3 flex flex-none items-center gap-3 border border-white/10'>
                             <div className='bg-white/20 w-10 h-10 md:w-14 md:h-14 flex justify-center items-center rounded-full overflow-hidden shrink-0'>
                                 {item.logoUrl ? (
-                                    <img src={item.logoUrl} alt={item.name} className="w-full h-full object-cover" />
+                                    <img src={item.logoUrl} alt={item.name} className="w-full h-full object-cover p-1 bg-white" />
                                 ) : (
-                                    <ImageIcon size={20} className="text-white/50" />
+                                    <Handshake size={24} className="text-white/70" />
                                 )}
                             </div>
-                            <p className="text-gray-200 truncate">{item.name}</p>
+                            <p className="text-gray-200 truncate font-medium">{item.name}</p>
                         </div>
                     ))}
                 </motion.div>
