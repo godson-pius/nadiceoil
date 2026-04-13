@@ -17,8 +17,8 @@ const trust = [
 
 const Partners = () => {
     return (
-        <section className='py-10'>
-            <div className='mx-20 p-2 flex items-center justify-center gap-10 mt-10 mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] overflow-hidden'>
+        <section className='py-10 overflow-hidden'>
+            <div className='mx-4 md:mx-20 p-2 flex items-center justify-center gap-10 mt-10 mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]'>
                 <motion.div
                     className='flex gap-x-4 w-max px-4'
                     animate={{ x: ["0%", "-50%"] }}
