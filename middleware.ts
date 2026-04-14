@@ -8,7 +8,8 @@ export function middleware(request: NextRequest) {
     request.nextUrl.pathname.startsWith('/api/admin/') && 
     request.nextUrl.pathname !== '/api/admin/login' && 
     request.nextUrl.pathname !== '/api/admin/logout' &&
-    !(request.nextUrl.pathname === '/api/admin/settings' && request.method === 'GET')
+    !(request.nextUrl.pathname === '/api/admin/settings' && request.method === 'GET') &&
+    !(request.nextUrl.pathname === '/api/admin/partners' && request.method === 'GET')
   ) {
     if (!adminSession || adminSession.value !== 'authenticated') {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
