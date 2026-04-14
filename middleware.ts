@@ -4,7 +4,12 @@ import type { NextRequest } from 'next/server';
 export function middleware(request: NextRequest) {
   const adminSession = request.cookies.get('admin_session');
 
-  if (request.nextUrl.pathname.startsWith('/api/admin/') && request.nextUrl.pathname !== '/api/admin/login' && request.nextUrl.pathname !== '/api/admin/logout') {
+  if (
+    request.nextUrl.pathname.startsWith('/api/admin/') && 
+    request.nextUrl.pathname !== '/api/admin/login' && 
+    request.nextUrl.pathname !== '/api/admin/logout' &&
+    !(request.nextUrl.pathname === '/api/admin/settings' && request.method === 'GET')
+  ) {
     if (!adminSession || adminSession.value !== 'authenticated') {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
