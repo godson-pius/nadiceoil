@@ -49,7 +49,10 @@ export const metadata: Metadata = {
     telephone: false,
   },
 
-  metadataBase: new URL("https://www.nadiceoilltd.com"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_BASE_URL || 
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://www.nadiceoilltd.com")
+  ),
 
   openGraph: {
     title: "Diesel (AGO) Supplier in Enugu | Nadice Oil and Gas Limited",
@@ -65,6 +68,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: "Diesel Supply in Enugu - Nadice Oil and Gas",
+        type: "image/jpeg",
       },
     ],
   },
@@ -158,6 +162,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${dm_sans.variable} ${bricolage_grotesque.variable} h-full`}
+      prefix="og: https://ogp.me/ns#"
     >
       <head>
         <script
